@@ -10,8 +10,8 @@
 </head>
 <body>
 
-   <div class="traks">
-       <div class="kick-track"></div>
+   <div class="container">
+       <div class="kick-track">
        <div class="controls">
            <h1>Kick</h1>
            <button data-track='0' class="mute kick-volume"><i class="fas fa-volume-mute"></i></button>
@@ -31,10 +31,11 @@
            <div class="pad kick-pad b6"></div>
            <div class="pad kick-pad b7"></div>
        </div>
+    </div>
        <!-- Second Track -->
-       <div class="hihat-track"></div>
+       <div class="hihat-track">
        <div class="controls">
-           <h1>hihat</h1>
+           <h1>Hihat</h1>
            <button data-track='1' class="mute hihat-volume"><i class="fas fa-volume-mute"></i></button>
            <select name="hihat-select" id="kick-select">
                <option value="./sounds/hihat-analog.wav">Hihat</option>
@@ -52,10 +53,10 @@
            <div class="pad hihat-pad b6"></div>
            <div class="pad hihat-pad b7"></div>
        </div>
-
+    </div>
        <!-- Third Track -->
 
-       <div class="snare-track"></div>
+       <div class="snare-track">
        <div class="controls">
            <h1>Snare</h1>
            <button data-track='2' class="mute snare-volume"><i class="fas fa-volume-mute"></i></button>
@@ -75,8 +76,10 @@
            <div class="pad snare-pad b6"></div>
            <div class="pad snare-pad b7"></div>
        </div>
-   </div>
+    </div>
     <button class="play">Play</button>
+   </div>
+    
     <audio src="./sounds/kick-808.wav" class="kick-sound"></audio>
     <audio src="./sounds/hihat-analog.wav" class="hihat-sound"></audio>
     <audio src="./sounds/snare-analog.wav" class="snare-sound"></audio>

@@ -1,0 +1,126 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: sans-serif;
+}
+
+i,svg{
+    pointer-events: none;
+}
+/* Container style */
+.container{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* Pads Style */
+.kick-pad,.snare-pad,.hihat-pad{
+    width: 5rem;
+    height: 5rem;
+    margin: 1rem 0.5rem;
+    cursor: pointer;
+}
+
+.kick-pad{
+    background-color: khaki;
+}
+.snare-pad{
+    background-color: salmon;
+}
+.hihat-pad{
+    background-color: hotpink;
+}
+
+.kick-pad.active{
+    background-color: rgb(211, 210, 207);
+}
+
+.snare-pad.active{
+    background-color: rgb(233, 168, 161);
+}
+
+.hihat-pad.active{
+    background-color: rgb(211, 148, 179);
+}
+
+
+.pad{
+    transition: all 0.5s ease;
+}
+
+/* Tracks Style */
+.kick-track,.snare-track,.hihat-track{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 70%;
+    margin-top: 5rem;
+    
+}
+
+.kick,.snare,.hihat{
+    display: flex;
+    
+}
+.controls{
+    display: flex;
+    justify-content: space-between;
+    flex: 0.5;
+    margin: 0rem 2rem;
+}
+
+.controls button{
+    padding: 1rem;
+    border: none;
+    background-color: hotpink;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+
+
+/* Play Button style */
+
+.play{
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+    background-color: hotpink;
+    display: flex;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    color: white;
+    margin-top: 8rem;
+    
+}
+
+/* Select Style */
+
+#snare-select,#kick-select,#hihat-select{
+    
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight:bold ;
+    border: 1px solid hotpink;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    user-select: none;
+    
+    
+}
+
+
+
+#snare-select,#kick-select,#hihat-select::before{ 
+   color: hotpink;
+    
+}
