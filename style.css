@@ -6,6 +6,7 @@
 
 body{
     font-family: sans-serif;
+    background: content-box radial-gradient(crimson, skyblue);
 }
 
 i,svg{
@@ -30,17 +31,20 @@ i,svg{
 }
 
 .kick-pad{
-    background-color: khaki;
+    background-color: rgb(128, 193, 253);
+    border-radius: 0.5rem;
 }
 .snare-pad{
     background-color: salmon;
+    border-radius: 0.5rem;
 }
 .hihat-pad{
     background-color: hotpink;
+    border-radius: 0.5rem;
 }
 
 .kick-pad.active{
-    background-color: rgb(211, 210, 207);
+    background-color: rgb(190, 213, 235);
 }
 
 .snare-pad.active{
@@ -61,13 +65,16 @@ i,svg{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 70%;
+    width: 80%;
     margin-top: 5rem;
+    color: white;
+
     
 }
 
 .kick,.snare,.hihat{
     display: flex;
+    
     
 }
 .controls{
