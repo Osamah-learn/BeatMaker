@@ -62,6 +62,17 @@ class DrumKit {
     activePad() {
         this.classList.toggle('active')
     }
+    
+    // update the button while click 
+    updateBtn(){
+      if(!this.isPlaying){
+          this.play.innerHTML='Stop';
+          this.play.classList.add('active');
+      }else{
+          this.play.innerHTML='Play';
+          this.play.classList.remove('active')
+      }
+    }
 }
 
 
@@ -76,6 +87,7 @@ const drumKit = new DrumKit();
 // Run start Method 
 drumKit.play.addEventListener('click', function () {
     drumKit.start();
+    drumKit.updateBtn();
 })
 
 // loop throw pads to change css backgrounds
