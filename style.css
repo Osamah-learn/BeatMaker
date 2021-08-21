@@ -148,3 +148,19 @@ i,svg{
     justify-content: center;
     align-items: center;
  }
+
+
+
+
+
+ /* Key Frames */
+
+ @keyframes playTrack {
+    from {
+        transform: scale(1);
+      }
+    
+      to {
+        transform: scale(1.3);
+      }
+ }
