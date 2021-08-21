@@ -7,7 +7,8 @@ class DrumKit {
         this.snareAudio = document.querySelector('.snare-sound')
         this.hihatAudio = document.querySelector('.hihat-sound');
         this.index = 0;
-        this.bpm = 200;
+        this.bpm = 50;
+        this.isPlaying=null;
     }
     // we check that the index of 0 dosnt go over 8 elements
     repeat() {
@@ -48,9 +49,14 @@ class DrumKit {
     start() {
         // The speed of steps 
         const speed = this.bpm * 1000 / 60
-        setInterval(() => {
+        if(!this.isPlaying){
+        this.isPlaying=setInterval(() => {
             this.repeat();
-        }, speed)
+        }, speed)}else{
+            clearInterval(this.isPlaying);
+            this.isPlaying=null;
+            
+        }
     }
     // Change the pads class to active color 
     activePad() {
