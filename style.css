@@ -6,7 +6,7 @@
 
 body{
     font-family: sans-serif;
-    background: content-box radial-gradient(crimson, skyblue);
+    background: content-box radial-gradient(rgb(221, 209, 211), skyblue);
 }
 
 i,svg{
@@ -131,3 +131,20 @@ i,svg{
    color: hotpink;
     
 }
+
+
+/* Footer */
+.footer {
+    position: fixed;
+ margin-top: 1rem;
+    height:10rem;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: content-box radial-gradient(rgb(138, 128, 130), skyblue);
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
