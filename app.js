@@ -1,4 +1,4 @@
-console.log("App started");
+console.log("App started ...");
 class DrumKit {
     constructor() {
         this.pads = document.querySelectorAll('.pad');
@@ -6,13 +6,14 @@ class DrumKit {
         this.kickAudio = document.querySelector('.kick-sound');
         this.snareAudio = document.querySelector('.snare-sound')
         this.hihatAudio = document.querySelector('.hihat-sound');
-        this.currentKick='./sounds/kick-808.wav';
-        this.currentSnare='./sounds/hihat-analog.wav';
-        this.currentHihat='./sounds/snare-analog.wav';
+        this.currentKick = './sounds/kick-808.wav';
+        this.currentSnare = './sounds/hihat-analog.wav';
+        this.currentHihat = './sounds/snare-analog.wav';
         this.index = 0;
         this.bpm = 50;
-        this.isPlaying=null;
+        this.isPlaying = null;
         this.selects = document.querySelectorAll('select');
+        this.muteBtn = document.querySelectorAll('.mute')
     }
     // we check that the index of 0 dosnt go over 8 elements
     repeat() {
@@ -28,17 +29,17 @@ class DrumKit {
                 // check if each sound is clicked
                 if (bar.classList.contains('kick-pad')) {
                     this.kickAudio.play();
-                    
+
                     //reset the time 
-                    this.kickAudio.currentTime=0;
+                    this.kickAudio.currentTime = 0;
                 }
                 if (bar.classList.contains('snare-pad')) {
                     this.snareAudio.play();
-                    this.snareAudio.currentTime=0;
+                    this.snareAudio.currentTime = 0;
                 }
                 if (bar.classList.contains('hihat-pad')) {
                     this.hihatAudio.play();
-                    this.hihatAudio.currentTime=0;
+                    this.hihatAudio.currentTime = 0;
                 }
             }
         })
@@ -54,51 +55,85 @@ class DrumKit {
     start() {
         // The speed of steps 
         const speed = this.bpm * 1000 / 60
-        if(!this.isPlaying){
-        this.isPlaying=setInterval(() => {
-            this.repeat();
-        }, speed)}else{
+        if (!this.isPlaying) {
+            this.isPlaying = setInterval(() => {
+                this.repeat();
+            }, speed)
+        } else {
             clearInterval(this.isPlaying);
-            this.isPlaying=null;
-            
+            this.isPlaying = null;
+
         }
     }
     // Change the pads class to active color 
     activePad() {
         this.classList.toggle('active')
     }
-    
+
     // update the button while click 
-    updateBtn(){
-      if(this.isPlaying){
-        this.playBtn.innerHTML='play';
-        this.playBtn.classList.remove('active');
-         
-      }else{
-        this.playBtn.innerHTML='Stop';
-        this.playBtn.classList.add('active');
-      }
+    updateBtn() {
+        if (this.isPlaying) {
+            this.playBtn.innerHTML = 'play';
+            this.playBtn.classList.remove('active');
+
+        } else {
+            this.playBtn.innerHTML = 'Stop';
+            this.playBtn.classList.add('active');
+        }
     }
 
-
-    changeSound(e){
-const selectedName = e.target.name;
-const selectedValue = e.target.value;
-switch(selectedName){
-    case 'kick-select':
-      this.kickAudio.src = selectedValue
-      break;
-    case 'snare-select':
-      this.snareAudio.src = selectedValue
-      break;
-      case 'hihat-select':
-       this.hihatAudio.src= selectedValue
-      break;
-}
+    // Change sound options
+    changeSound(e) {
+        const selectedName = e.target.name;
+        const selectedValue = e.target.value;
+        switch (selectedName) {
+            case 'kick-select':
+                this.kickAudio.src = selectedValue
+                break;
+            case 'snare-select':
+                this.snareAudio.src = selectedValue
+                break;
+            case 'hihat-select':
+                this.hihatAudio.src = selectedValue
+                break;
+        }
     }
+    // Mute button
 
+    onMute(e) {
+        // we catch the attribute data-track to know which button is our value 
+        const muteIndex = e.target.getAttribute('data-track');
+        // we add active class to change the background of the button while mute
+        e.target.classList.toggle('active');
+        // we make conditon if the target is active thats mean it gonna be muted
+        if (e.target.classList.contains('active')) {
+            switch (muteIndex) {
+                case '0':
+                    this.kickAudio.volume = 0
+                    break;
+                case '1':
+                    this.hihatAudio.volume = 0
+                    break;
+                case '2':
+                    this.snareAudio.volume = 0
+                    break;
+            }
+            // else its unMute
+        } else {
+            switch (muteIndex) {
+                case '0':
+                    this.kickAudio.volume = 1
+                    break;
+                case '1':
+                    this.hihatAudio.volume = 1
+                    break;
+                case '2':
+                    this.snareAudio.volume = 1
+                    break;
+            }
 
-
+        }
+    }
 
 
 }
@@ -126,8 +161,15 @@ drumKit.pads.forEach(pad => {
     })
 })
 
-drumKit.selects.forEach(select=>{
-select.addEventListener('change',function(e){
-drumKit.changeSound(e);
+drumKit.selects.forEach(select => {
+    select.addEventListener('change', function (e) {
+        drumKit.changeSound(e);
+    })
 })
+
+
+drumKit.muteBtn.forEach(btn => {
+    btn.addEventListener('click', function (e) {
+        drumKit.onMute(e)
+    })
 })
