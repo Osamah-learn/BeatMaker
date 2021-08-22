@@ -10,10 +10,11 @@ class DrumKit {
         this.currentSnare = './sounds/hihat-analog.wav';
         this.currentHihat = './sounds/snare-analog.wav';
         this.index = 0;
-        this.bpm = 50;
+        this.bpm = 20;
         this.isPlaying = null;
         this.selects = document.querySelectorAll('select');
-        this.muteBtn = document.querySelectorAll('.mute')
+        this.muteBtn = document.querySelectorAll('.mute');
+        this.tempoSlider = document.querySelector('.tempo-slider');
     }
     // we check that the index of 0 dosnt go over 8 elements
     repeat() {
@@ -54,7 +55,7 @@ class DrumKit {
     // start the BeatMaker
     start() {
         // The speed of steps 
-        const speed = this.bpm * 1000 / 60
+        const speed = (this.bpm / 60 )* 1000 ;
         if (!this.isPlaying) {
             this.isPlaying = setInterval(() => {
                 this.repeat();
@@ -134,8 +135,19 @@ class DrumKit {
 
         }
     }
-
-
+    onTempoChange(e){
+        const tempNum= document.querySelector('.tempo-nr');
+        tempNum.innerHTML=e.target.value;
+        
+    }
+    onUpdateTempo(e){
+        this.bpm=e.target.value;
+        clearInterval(this.isPlaying);
+        this.isPlaying=null;
+        if(this.playBtn.classList.contains('active'))
+        this.start()
+        
+    }
 }
 
 
@@ -172,4 +184,14 @@ drumKit.muteBtn.forEach(btn => {
     btn.addEventListener('click', function (e) {
         drumKit.onMute(e)
     })
+})
+
+
+drumKit.tempoSlider.addEventListener('input',function(e){
+    drumKit.onTempoChange(e);
+})
+
+
+drumKit.tempoSlider.addEventListener('change',function(e){
+    drumKit.onUpdateTempo(e);
 })
