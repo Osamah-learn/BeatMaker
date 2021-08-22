@@ -2,7 +2,7 @@ console.log("App started");
 class DrumKit {
     constructor() {
         this.pads = document.querySelectorAll('.pad');
-        this.play = document.querySelector('.play')
+        this.playBtn = document.querySelector('.play')
         this.kickAudio = document.querySelector('.kick-sound');
         this.snareAudio = document.querySelector('.snare-sound')
         this.hihatAudio = document.querySelector('.hihat-sound');
@@ -24,6 +24,7 @@ class DrumKit {
                 // check if each sound is clicked
                 if (bar.classList.contains('kick-pad')) {
                     this.kickAudio.play();
+                    
                     //reset the time 
                     this.kickAudio.currentTime=0;
                 }
@@ -65,12 +66,13 @@ class DrumKit {
     
     // update the button while click 
     updateBtn(){
-      if(!this.isPlaying){
-          this.play.innerHTML='Stop';
-          this.play.classList.add('active');
+      if(this.isPlaying){
+        this.playBtn.innerHTML='play';
+        this.playBtn.classList.remove('active');
+         
       }else{
-          this.play.innerHTML='Play';
-          this.play.classList.remove('active')
+        this.playBtn.innerHTML='Stop';
+        this.playBtn.classList.add('active');
       }
     }
 }
@@ -85,7 +87,7 @@ class DrumKit {
 
 const drumKit = new DrumKit();
 // Run start Method 
-drumKit.play.addEventListener('click', function () {
+drumKit.playBtn.addEventListener('click', function () {
     drumKit.start();
     drumKit.updateBtn();
 })
